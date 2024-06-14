@@ -1,0 +1,8 @@
+# This rule ignores .DS_Store on Macs
+**/.DS_Store
+
+# This rule ignores class files
+*.class
+
+# This rule ignores the contents of the bin/ build output directory (which includes .class files)
+bin/
