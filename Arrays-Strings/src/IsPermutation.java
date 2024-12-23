@@ -80,4 +80,43 @@ public class IsPermutation {
         return str1.length() == str2.length();
     }
 
+     /**
+     * Approach 3: ASCII Array
+     * 
+     * Time Complexity: O(n) bc we are iterating through both strings
+     * 
+     * Space Complexity: O(1) bc of fixed size array
+     * 
+     * Logic: Keep track of the frequencies of each char in both strings.
+     *        Increment for both strings.
+     *        If they are permutations of each other, the ASCII array should only contain even numbers that cancel each other out.
+     * 
+     * Solved 12/20/2024
+     */
+     public static boolean isPermutation3(String string1, String string2) {
+        // Base Case 1: Null strings are not permutations of each other
+        if (string1 == null || string2 == null) {
+            return false;
+        }
+        // Base Case 2: Both strings must be the same length to be permutations
+        if (string1.length() != string2.length()) {
+            return false;
+        }
+        // ASCII count array to increment each char in both string
+        int[] count = new int[128];
+        for (int i = 0; i < string1.length(); i++) {
+            count[string1.charAt(i)]++;
+            count[string2.charAt(i)]++;
+        }
+
+        // Check if the string's elements cancel each other out
+        for (int i : count) {
+            if (i % 2 != 0) {
+                return false;
+            }
+        }
+        // If the strings have the same char occurrences, they're permutations
+        return true;
+    }
+
 }

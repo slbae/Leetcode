@@ -4,44 +4,58 @@ import org.junit.jupiter.api.Test;
 public class URLifyTest {
     
     @Test
-    public void testURLify_NoSpaces() {
-        String input = "HelloWorld";
-        String expected = "HelloWorld";
-        assertEquals(expected, URLify.urlify1(input));
+    public void testUrlifyWithTrailingSpaces() {
+        char[] input = new char[] {'M', 'r', ' ', 'J', 'o', 'h', 'n', ' ', 'S', 'm', 'i', 't', 'h', ' ', ' ', ' ', ' '};
+        int trueLength = 13; // "Mr John Smith" has 13 characters
+
+        char[] expected = new char[] {'M', 'r', '%', '2', '0', 'J', 'o', 'h', 'n', '%', '2', '0', 'S', 'm', 'i', 't', 'h'};
+        char[] result = URLify.urlify1(input, trueLength);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    public void testURLify_SingleSpace() {
-        String input = "Hello World";
-        String expected = "Hello%20World";
-        assertEquals(expected, URLify.urlify1(input));
+    public void testUrlifyWithoutSpaces() {
+        char[] input = new char[] {'H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd'};
+        int trueLength = 10; // "HelloWorld" has 10 characters
+
+        char[] expected = new char[] {'H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd'};
+        char[] result = URLify.urlify1(input, trueLength);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    public void testURLify_MultipleSpaces() {
-        String input = "Mr John Smith";
-        String expected = "Mr%20John%20Smith";
-        assertEquals(expected, URLify.urlify1(input));
+    public void testUrlifyEmptyArray() {
+        char[] input = new char[] {};
+        int trueLength = 0; // Empty string
+
+        char[] expected = new char[] {};
+        char[] result = URLify.urlify1(input, trueLength);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    public void testURLify_LeadingAndTrailingSpaces() {
-        String input = "  Hello World    ";
-        String expected = "%20%20Hello%20World%20%20%20%20";
-        assertEquals(expected, URLify.urlify1(input));
+    public void testUrlifyNoTrailingSpaces() {
+        char[] input = new char[] {'N', 'o', 'S', 'p', 'a', 'c', 'e', 's', 'H', 'e', 'r', 'e'};
+        int trueLength = 12; // "NoSpacesHere" has 12 characters
+
+        char[] expected = new char[] {'N', 'o', 'S', 'p', 'a', 'c', 'e', 's', 'H', 'e', 'r', 'e'};
+        char[] result = URLify.urlify1(input, trueLength);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    public void testURLify_AllSpaces() {
-        String input = "   ";
-        String expected = "%20%20%20";
-        assertEquals(expected, URLify.urlify1(input));
-    }
+    public void testUrlifyEdgeCase() {
+        char[] input = new char[] {' ', 'a', ' ', ' '};
+        int trueLength = 2; // " a "
 
-    @Test
-    public void testURLify_EmptyString() {
-        String input = "";
-        String expected = "";
-        assertEquals(expected, URLify.urlify1(input));
+        char[] expected = new char[] {'%', '2', '0', 'a'};
+        char[] result = URLify.urlify1(input, trueLength);
+
+        assertArrayEquals(expected, result);
     }
-}
+    }
+    

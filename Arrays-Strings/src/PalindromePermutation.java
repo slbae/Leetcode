@@ -4,7 +4,6 @@ import java.util.*;
  * Determine if a String is a permutation of a palindrome. Ignore casing and non-letter chars.
  * A palindrome is a String that is the same forwards and backwards. A permutation is a
  * rearrangement of chars in a String.
- * 
  */
 public class PalindromePermutation {
 
@@ -84,6 +83,43 @@ public class PalindromePermutation {
         }
 
         return odds < 2;
+    }
+
+    /**
+     * Approach 3: ASCII array (unassisted implementation of approach 1)
+     * 
+     * Time Complexity: O(n) bc we must check n elements
+     * 
+     * Space Complexity: O(1) bc fixed array
+     * 
+     * Logic: Same as palindromePermutation1
+     * 
+     * Solved 12/20/2024
+     */
+    public static boolean palindromePermutation3(String string) {
+        // Base Case 1: Null string is not a permutation
+        if (string == null) {
+            return false;
+        }
+
+        // Ignore casing and non letter chars
+        String s = string.toLowerCase();
+        int[] count = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) {
+                count[s.charAt(i) - 'a']++;
+            }
+        }
+
+        int unique = 0;
+        for (int i : count) {
+            if (i % 2 != 0) {
+                unique++;
+            }
+        }
+
+        return unique < 2;
     }
 
 }

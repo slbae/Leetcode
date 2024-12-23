@@ -81,4 +81,39 @@ public class IsUnique {
         return true;
     }
 
+    /**
+     * Approach 3: ASCII Count Array
+     * 
+     * Time Complexity: O(n) bc iterating through string
+     * 
+     * Space Complexity: O(1) bc an array of constant size is used
+     * 
+     * Logic: Increment the ASCII count array for each char in string.
+     *        Check if any element in the array is > 1, if so, return false.
+     * 
+     * Solved 12/20/2024
+     */
+    public static boolean isUnique3(String string) {
+        // Base Case 1: Null strings are unique
+        if (string == null) {
+            return true;
+        }
+
+        // Increment count array for each char in string
+        int[] count = new int[128];
+        for (int i = 0; i < string.length(); i++) {
+            count[string.charAt(i)]++;
+        }
+
+        // Check if any char has multiple occurrences
+        for (int i : count) {
+            if (i > 1) {
+                return false;
+            }
+        }
+        
+        // String is unique
+        return true;
+    }
+
 }
