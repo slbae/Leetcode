@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RotateMatrixTest {
     @Test
-    public void testRotateMatrix1_basicCase() {
+    public void testRotateMatrix_basicCase() {
         // 2x2 matrix
         int[][] matrix = {
             {1, 2},
@@ -17,7 +17,7 @@ public class RotateMatrixTest {
     }
 
     @Test
-    public void testRotateMatrix1_largerMatrix() {
+    public void testRotateMatrix_threeByThree() {
         // 3x3 matrix
         int[][] matrix = {
             {1, 2, 3},
@@ -33,7 +33,7 @@ public class RotateMatrixTest {
     }
 
     @Test
-    public void testRotateMatrix1_singleElement() {
+    public void testRotateMatrix_singleElement() {
         // 1x1 matrix
         int[][] matrix = {
             {1}
@@ -45,7 +45,7 @@ public class RotateMatrixTest {
     }
 
     @Test
-    public void testRotateMatrix1_emptyMatrix() {
+    public void testRotateMatrix_emptyMatrix() {
         // Empty matrix
         int[][] matrix = {};
         int[][] expected = {};
@@ -53,7 +53,7 @@ public class RotateMatrixTest {
     }
 
     @Test
-    public void testRotateMatrix1_negativeNumbers() {
+    public void testRotateMatrix_negativeNumbers() {
         // Matrix with negative numbers
         int[][] matrix = {
             {-1, -2},
@@ -67,7 +67,7 @@ public class RotateMatrixTest {
     }
 
     @Test
-    public void testRotateMatrix1_fourByFour() {
+    public void testRotateMatrix_fourByFour() {
         // 4x4 matrix
         int[][] matrix = {
             {1, 2, 3, 4},
